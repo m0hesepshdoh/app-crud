@@ -28,7 +28,7 @@
         @method('put')
 
         <div>
-            <label>name</label>
+            <label>Write The Name</label>
             <input type="text" name="name" placeholder="Name" value="{{ $product->name }}">
         </div>
         <div>

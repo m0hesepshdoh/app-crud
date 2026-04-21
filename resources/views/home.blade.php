@@ -1,6 +1,0 @@
-
-
-                    You are logged in!
-					
-					
-					

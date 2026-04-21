@@ -24,13 +24,19 @@
             @foreach ($products as $product)
                 <tr>
                     <td>{{ $product->id }}</td>
+
                     <td>{{ $product->name }}</td>
+
                     <td>{{ $product->qty }}</td>
+
                     <td>{{ $product->price }}</td>
+
                     <td>{{ $product->description }}</td>
+
                     <td>
                         <a href="{{ route('products.edit', ['product' => $product]) }}">Edit</a>
                     </td>
+
                     <td>
                         <form method="post" action="{{ route('products.destroy', ['product' => $product]) }}">
                             @csrf
@@ -38,6 +44,7 @@
                             <input type="submit" value="Delete">
                         </form>
                     </td>
+                    
                 </tr>
             @endforeach
         </table>

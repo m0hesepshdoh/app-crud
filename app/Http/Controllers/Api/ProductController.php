@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Models\Product;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -11,13 +12,9 @@ class ProductController extends Controller
     {
         $products = Product::all();
 
-        return view('products.index', ['products' => $products]);
+        return response()->json($products);
     }
 
-    public function create()
-    {
-        return view('products.create');
-    }
 
     public function store(Request $request)
     {
@@ -30,16 +27,22 @@ class ProductController extends Controller
 
         $newProduct = Product::create($data);
 
-        return redirect(route('products.index'));
+        return response()->json([
+            'product' => $newProduct
+            ]);
+
     }
 
-    public function edit(Product $product)
+    public function show(Product $product)
     {
-        return view('products.edit', ['product' => $product]);
+
+        return response()->json($product);
+
     }
 
-    public function update(Product $product, Request $request){
-        
+
+    public function update(Product $product, Request $request)
+    {
         $data = $request->validate([
             'name' => 'required',
             'qty' => 'required|numeric',
@@ -47,16 +50,17 @@ class ProductController extends Controller
             'description' => 'nullable',
         ]);
 
-        $product ->update($data);
+        $product->update($data);
 
-        return redirect(route('products.index'));
+        return response()->json([
+            'product' => $product
+        ]);
     }
 
-    public function destroy(Product $product){
-
+    public function destroy(Product $product)
+    {
         $product->delete();
 
-        return redirect(route('products.index'));
-
+        return response()->json();
     }
 }

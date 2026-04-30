@@ -4,7 +4,9 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "sync": "git fetch origin && git reset --hard origin/master && npm install",
+        "syncr": "git add . && git commit -m 'laptop' && git push origin master"
     },
     "devDependencies": {
         "@tailwindcss/vite": "^4.0.0",
